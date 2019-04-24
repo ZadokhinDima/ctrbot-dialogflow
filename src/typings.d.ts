@@ -3,17 +3,20 @@ declare module 'dialogflow-fulfillment'
 declare class WebhookClient {
     parameters: { [level: string]: string }
     contexts: WebhookClientContext[]
+    requestSource: string
     add(msg: string): void
     add(card: Card): void
+    add(any: any): void
     clearOutgoingContexts(): void
     handleRequest(intentMap: Map<string, Function>): void
     setContext(context: WebhookClientContext): void
+    conv(): any
 }
 
 declare class WebhookClientContext {
     name: string
     lifespan: number
-    parameters: { [level: string]: string }
+    parameters: { [level: string]: any }
 }
 
 declare class Card extends RichResponse {
